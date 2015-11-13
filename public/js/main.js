@@ -5,10 +5,12 @@ $(document).ready(function() {
   $('#new').click(getNewMessage);
 
   function getNewMessage() {
+    $('#author, #messageArea').val('');
     $('#post').click(post);
   }
 
   function post() {
+    $('#post').off('click');
     var msgVal = $('#messageArea').val();
 
     if (msgVal) {
