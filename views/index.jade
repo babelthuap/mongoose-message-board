@@ -5,6 +5,7 @@ html(lang="en")
     link(href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet")
     link(rel="stylesheet", href="bower_components/font-awesome/css/font-awesome.min.css")
     link(rel="stylesheet", href="css/style.css")
+  body
     .container
       br
       .jumbotron
@@ -25,7 +26,7 @@ html(lang="en")
               p= message.message
               span.author
                 em#msgAuthor= message.author
-                em= ' -- ' + (new Date(message.time)).toUTCString() + ' -- '
+                em= ' -- ' + moment(message.time).format('MMMM Do YYYY, h:mm:ss a') + ' -- '
                 button.edit(data-toggle='modal', data-target='#messageForm')
                   i.fa.fa-pencil-square-o
                 span &nbsp;
