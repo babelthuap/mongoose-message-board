@@ -8,8 +8,11 @@ var Message = require('../models/message');
 
 
 router.get('/', function(req, res) {
-  console.log('\n\nGET REQUEST\n\n');
-  res.render("index");
+  Message.find({}, function(err, messages) {
+    // sort - newest messages on top
+    messages.sort((msg1, msg2) => msg2.time - msg1.time);
+    res.render("index", {messages: messages});
+  });
 });
 
 

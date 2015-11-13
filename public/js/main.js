@@ -1,5 +1,15 @@
 'use strict';
 
 $(document).ready(function() {
-  console.log('jQuery working');
+
+  $('#new').click(getNewMessage);
+
+  function getNewMessage() {
+    $('#post').click(post);
+  }
+
+  function post() {
+    
+  }
+
 })

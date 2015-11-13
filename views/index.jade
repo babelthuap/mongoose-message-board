@@ -3,6 +3,7 @@ html(lang="en")
   head
     title Message Board
     link(href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet")
+    link(rel="stylesheet", href="css/style.css")
     .container
       br
       .jumbotron
@@ -11,5 +12,30 @@ html(lang="en")
           | by 
           a(href="https://babelthuap.github.io/") Nicholas Neumann-Chun
         hr
+        center
+          button.btn.btn-primary#new(data-toggle='modal', data-target='#messageForm') Post New Message
+        #board
+          each message in messages
+            .row.message
+              p= message.message
+              em.author= message.author + ' -- ' + (new Date(message.time)).toUTCString()
+    #messageForm.modal.fade(role='dialog')
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button.close(type='button', data-dismiss='modal') ×
+              h4.modal-title Post A Message
+            .modal-body
+              .compose
+                .row
+                  span Name: 
+                  input#nameArea(type="text")
+                .row
+                  p
+                  p Message: 
+                  textarea#messageArea(name="", cols="48", rows="8")
+            .modal-footer
+              button.btn.btn-primary#post(type='button', data-dismiss='modal') Post
     script(src='bower_components/jquery/dist/jquery.min.js')
+    script(src='bower_components/bootstrap/dist/js/bootstrap.min.js')
     script(src='js/main.js')
