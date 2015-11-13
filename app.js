@@ -9,7 +9,7 @@ var morgan = require('morgan');
 
 // set up mongoose
 var mongoose = require('mongoose');
-mongoose.connect('ds053784.mongolab.com:53784/heroku_5kmwlrwk');
+mongoose.connect('mongodb://localhost/messageboard');
 
 var app = express();
 
