@@ -7,13 +7,17 @@ html(lang="en")
     .container
       br
       .jumbotron
-        h1 Simple Message Board
-        em
-          | by 
-          a(href="https://babelthuap.github.io/") Nicholas Neumann-Chun
+        center
+          h1 Simple Message Board
+          em
+            | by 
+            a(href="https://babelthuap.github.io/") Nicholas Neumann-Chun
         hr
         center
-          button.btn.btn-primary#new(data-toggle='modal', data-target='#messageForm') Post New Message
+          button.btn.btn-success#new(data-toggle='modal', data-target='#messageForm') Post New Message
+          br
+          br
+          span (NOTE: Newer Messages On Top)
         #board
           each message in messages
             .row.message
@@ -24,7 +28,7 @@ html(lang="en")
           .modal-content
             .modal-header
               button.close(type='button', data-dismiss='modal') ×
-              h4.modal-title Post A Message
+              h4.modal-title Post New Message
             .modal-body
               .compose
                 .row

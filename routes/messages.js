@@ -22,6 +22,7 @@ router.get('/all', function(req, res) {
   });
 });
 
+
 router.post('/', function(req, res) {
   var message = new Message(req.body); // uppercase is the 'message class'
   message.save(function(err, savedMessage) {

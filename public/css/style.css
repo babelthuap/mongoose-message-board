@@ -2,6 +2,11 @@ body {
   background-color: black;
 }
 
+#board {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
 .message {
   border: 1px solid #000;
   border-radius: 10px;
