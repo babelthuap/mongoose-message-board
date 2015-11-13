@@ -3,6 +3,7 @@ html(lang="en")
   head
     title Message Board
     link(href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet")
+    link(rel="stylesheet", href="bower_components/font-awesome/css/font-awesome.min.css")
     link(rel="stylesheet", href="css/style.css")
     .container
       br
@@ -22,7 +23,13 @@ html(lang="en")
           each message in messages
             .row.message
               p= message.message
-              em.author= message.author + ' -- ' + (new Date(message.time)).toUTCString()
+              span.author
+                em= message.author + ' -- ' + (new Date(message.time)).toUTCString() + ' -- '
+                button.edit: i.fa.fa-pencil-square-o
+                span &nbsp;
+                button.remove: i.fa.fa-times
+                span &nbsp;
+                .mongoId= message._id
     #messageForm.modal.fade(role='dialog')
         .modal-dialog
           .modal-content

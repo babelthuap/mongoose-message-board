@@ -3,11 +3,15 @@
 $(document).ready(function() {
 
   $('#new').click(getNewMessage);
+  $('#board').on('click', '.remove', removeMessage);
+  // $('#board').on('click', '.edit', editMessage);
+
 
   function getNewMessage() {
     $('#author, #messageArea').val('');
     $('#post').click(post);
   }
+
 
   function post() {
     $('#post').off('click');
@@ -24,6 +28,11 @@ $(document).ready(function() {
       .done(() => location.reload(true))
       .fail(err => console.log("ERROR POSTING MESSAGE:", err));
     }
+  }
+
+
+  function removeMessage() {
+    var id = $(this).siblings('.mongoId').text();
   }
 
 })
