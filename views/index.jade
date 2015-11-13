@@ -24,10 +24,13 @@ html(lang="en")
             .row.message
               p= message.message
               span.author
-                em= message.author + ' -- ' + (new Date(message.time)).toUTCString() + ' -- '
-                button.edit: i.fa.fa-pencil-square-o
+                em#msgAuthor= message.author
+                em= ' -- ' + (new Date(message.time)).toUTCString() + ' -- '
+                button.edit(data-toggle='modal', data-target='#messageForm')
+                  i.fa.fa-pencil-square-o
                 span &nbsp;
-                button.remove: i.fa.fa-times
+                button.remove
+                  i.fa.fa-times
                 span &nbsp;
                 .mongoId= message._id
     #messageForm.modal.fade(role='dialog')
@@ -35,7 +38,7 @@ html(lang="en")
           .modal-content
             .modal-header
               button.close(type='button', data-dismiss='modal') ×
-              h4.modal-title Post New Message
+              h4.modal-title
             .modal-body
               .compose
                 .row

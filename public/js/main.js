@@ -4,17 +4,20 @@ $(document).ready(function() {
 
   $('#new').click(getNewMessage);
   $('#board').on('click', '.remove', removeMessage);
-  // $('#board').on('click', '.edit', editMessage);
+  $('#board').on('click', '.edit', editMessage);
 
 
   function getNewMessage() {
+    $('#post').off('click');
     $('#author, #messageArea').val('');
-    $('#post').click(post);
+    $('.modal-title').text('Post New Message');
+    $('#post').text('Post').click(function() {
+      modifyDB('POST');
+    });
   }
 
 
-  function post() {
-    $('#post').off('click');
+  function modifyDB(method, id) {
     var msgVal = $('#messageArea').val();
 
     if (msgVal) {
@@ -24,15 +27,43 @@ $(document).ready(function() {
         message: msgVal
       }
 
-      $.post('/messages', message)
+      if (id) message['_id'] = id;
+
+      $.ajax({
+        method: method,
+        url: '/messages', 
+        data: message
+      })
       .done(() => location.reload(true))
       .fail(err => console.log("ERROR POSTING MESSAGE:", err));
     }
   }
 
 
+  function editMessage() {
+    $('#post').off('click');
+    var id = $(this).siblings('.mongoId').text();
+
+    $('#author').val( $(this).siblings('#msgAuthor').text() );
+    $('#messageArea').val( $(this).closest('.row').find('p').text() );
+
+    $('.modal-title').text('Edit Message');
+    $('#post').text('Update').click(function() {
+      modifyDB('PUT', id);
+    });
+  }
+
+
   function removeMessage() {
     var id = $(this).siblings('.mongoId').text();
+
+    $.ajax({
+      method: 'DELETE',
+      url: '/messages',
+      data: {'_id': id}
+    })
+    .done(() => location.reload(true))
+    .fail(err => console.log("ERROR DELETING MESSAGE:", err));
   }
 
 })
