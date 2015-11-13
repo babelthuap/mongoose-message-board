@@ -9,7 +9,7 @@ var morgan = require('morgan');
 
 // set up mongoose
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/messageboard');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/messageboard');
 
 var app = express();
 
