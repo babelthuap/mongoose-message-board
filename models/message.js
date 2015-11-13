@@ -9,7 +9,6 @@ var messageSchema = mongoose.Schema({
   message: String
 });
 
-// mongoose takes this and makes and makes a collection 'cars'
 var Message = mongoose.model('Message', messageSchema);
 
 module.exports = Message;
